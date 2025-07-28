@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zachriss TechSolutions - IT Issues Expert</title>
+    <style>
+        /* CSS Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: url('https://images.unsplash.com/photo-1517430816045-df4b7ebf13a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 1rem auto 0;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .testimonials {
+            background-color: var(--light-color);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card .quote {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-card .author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode .service-card,
+        body.dark-mode .contact-form,
+        body.dark-mode .testimonial-card {
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode .section-title {
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode input,
+        body.dark-mode textarea {
+            background-color: #2d2d2d;
+            color: #f5f5f5;
+            border-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Zachriss TechSolutions</h1>
+            <p>Your trusted partner for all IT issues and technical challenges</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Solving Your IT Problems</h1>
+            <p>From hardware failures to software glitches, network issues to cybersecurity concerns - I provide comprehensive solutions to keep your technology running smoothly.</p>
+            <a href="#contact" class="btn btn-accent">Get Help Now</a>
+        </div>
+    </section>
+    
+    <section id="services" class="container">
+        <h2 class="section-title">My Services</h2>
+        <div class="services">
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Troubleshooting">
+                <div class="service-content">
+                    <h3>Technical Troubleshooting</h3>
+                    <p>Diagnose and resolve hardware and software issues for computers, laptops, and mobile devices. Quick and effective solutions to get you back to work.</p>
+                </div>
+            </div>
+            
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Network Solutions">
+                <div class="service-content">
+                    <h3>Network Solutions</h3>
+                    <p>Setup, configuration, and troubleshooting for home and small business networks. Wi-Fi optimization, router configuration, and connectivity issues.</p>
+                </div>
+            </div>
+            
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Security">
+                <div class="service-content">
+                    <h3>Security & Protection</h3>
+                    <p>Virus removal, malware protection, firewall setup, and security best practices to keep your devices and data safe from threats.</p>
+                </div>
+            </div>
+            
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Data Recovery">
+                <div class="service-content">
+                    <h3>Data Recovery</h3>
+                    <p>Recover lost or deleted files from hard drives, SSDs, USB drives, and other storage media. Emergency data rescue services.</p>
+                </div>
+            </div>
+            
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Software Support">
+                <div class="service-content">
+                    <h3>Software Support</h3>
+                    <p>Installation, configuration, and troubleshooting for operating systems and applications. Office suites, creative tools, and specialized software.</p>
+                </div>
+            </div>
+            
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Remote Support">
+                <div class="service-content">
+                    <h3>Remote Assistance</h3>
+                    <p>Quick help without the wait. Secure remote sessions to solve your issues from anywhere, saving you time and hassle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hi, I'm Zacharia Sugilo, a second year student at National Institute of Transport "NIT"  am solving technical problems for individuals and small businesses.</p>
+                    <p>My journey in technology began when I was just 12 years old, taking apart computers to understand how they worked. What started as curiosity turned into a passion for helping others navigate the complex world of technology.</p>
+                    <p>I specialize in making technology work for you, not against you. My approach is patient, thorough, and tailored to your specific needs and skill level.</p>
+                    <p>When I'm not fixing tech issues, you can find me teaching coding workshops, contributing to open-source projects, or exploring the latest tech innovations.</p>
+                </div>
+                <div class="about-img">
+                    <img src="https://photos.fife.usercontent.google.com/pw/AP1GczOzf7C9QdH_ybL_i3ySsTtof1pYO-BwWsKxVDuoOg96K-3D9C0yzcjF=w168-h224-no?authuser=0" alt="Zacharia sugilo">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card fade-in">
+                    <p class="quote">"zacharia saved my business when our server crashed. He recovered all our critical data and had us back up and running in no time. Professional, knowledgeable, and patient."</p>
+                    <p class="author">- Manase M M., Small Business Owner</p>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <p class="quote">"I was completely locked out of my computer after a Windows update failed. Alex fixed it remotely in under an hour. Amazing service!"</p>
+                    <p class="author">- Amoss sugilo., Freelance Writer</p>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <p class="quote">"Finally, someone who explains tech issues in plain English! Alex doesn't just fix problems, he teaches you how to prevent them."</p>
+                    <p class="author">- Thomas N., Retired Teacher</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone (optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="issue">Describe Your Issue</label>
+                        <textarea id="issue" name="issue" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <h3>Zachriss TechSolutions</h3>
+            <p>Solving your IT challenges with expertise and care</p>
+            
+            <div class="social-links">
+                <a href="#" aria-label="Twitter"><i>🐦</i></a>
+                <a href="#" aria-label="LinkedIn"><i>🔗</i></a>
+                <a href="#" aria-label="GitHub"><i>💻</i></a>
+                <a href="#" aria-label="Email"><i>✉️</i></a>
+            </div>
+            
+            <p>&copy;2025 <span id="year"></span> Zachriss TechSolutions. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <button class="dark-mode-toggle" id="darkModeToggle">🌓</button>
+    
+    <script>
+        // JavaScript functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            darkModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+                darkModeToggle.textContent = isDarkMode ? '🌞' : '🌓';
+            });
+            
+            // Check for saved dark mode preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.textContent = '🌞';
+            }
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const issue = document.getElementById('issue').value;
+                
+                // Here you would typically send the data to a server
+                // For this example, we'll just show an alert
+                alert(`Thank you, ${name}! Your message about "${issue.substring(0, 30)}..." has been received. I'll contact you at ${email} soon.`);
+                
+                // Reset form
+                contactForm.reset();
+            });
+            
+            // Scroll animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Initial check
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
